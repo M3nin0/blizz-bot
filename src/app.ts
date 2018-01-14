@@ -20,7 +20,7 @@ bot.on('message', message => {
 
     if (message.content.slice(0, 1) == '!') {
         if (message.content.slice(1, 15) == 'search_profile') {
-            if (message.content.slice(15, 20).trim() == 'wow') {
+            if (message.content.slice(15, 20).trim() == 'wow') {                
                 let args: string[] = message.content
                                             .slice(20)
                                             .split(';');
@@ -38,4 +38,4 @@ bot.on('message', message => {
 
 });
 
-bot.login('NDAxNTY0MTA5NTkxNjc0ODkw.DTzBhA.p2L9k2G4Nw0Yk6apdyEpLvm_Ie4');
+bot.login('TOKEN_DISCORD');
