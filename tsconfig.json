@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": false,
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": false,
+        "baseUrl": ".",
+        "allowJs": true,
+        "paths": {
+            "models/*": ["src/models/*"]
+        }
+    },
+    "include": [
+    "src/**/*"
+    ],
+
+    "exclude": [
+    "node_modules"
+    ]
+}

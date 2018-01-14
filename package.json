@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/M3nin0/blizz-bot#readme",
   "dependencies": {
+    "@types/node": "^9.3.0",
     "blizzard.js": "^2.1.0",
     "discord.js": "^11.2.1"
   }

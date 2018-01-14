@@ -25,9 +25,12 @@ bot.on('message', message => {
                                             .slice(20)
                                             .split(';');
 
-                Dialog.searchProfile(args[0].trim(),
+                
+                Dialog.searchProfile(message,
+                                     args[0].trim(),
                                      args[1].trim(),
-                                     args[2].trim());
+                                     args[2].trim())
+                
             }
         }
     }

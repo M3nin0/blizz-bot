@@ -1,7 +1,8 @@
 import * as blizz from 'blizzard.js';
-
+import { Message } from 'discord.js';
+ 
 const blizzard = blizz.initialize({
-    apikey: "TOKEN_BLIZZARD" 
+    apikey: "TOKEN_BATTLE_NET" 
 });
 
 class Dialog {
@@ -31,16 +32,27 @@ class Dialog {
         '
     }
 
+    public static async searchProfile(chat: Message, nameProfile: string, realm: string, locale: string ): Promise<any> {
     
-    public static searchProfile(nameProfile: string, realm: string, locale: string ): any {
-        blizzard.wow.character(['profile'], 
-        { 
-            origin: locale, 
-            realm: realm, 
-            name: nameProfile 
-        }).then(response => {
-                console.log(response.data);
-        })
+        let _infos  = {data : {
+            name: [], 
+            battlegroup: [], 
+            level: [], 
+            achievementPoints: [],
+            totalHonorableKills: []
+        }};
+    
+        await blizzard.wow.character(['profile'], { origin: locale, realm: realm, name: nameProfile })
+        .then(response => {
+            _infos = response;
+        });
+    
+        chat.reply(
+                        'Nome: ' + _infos.data.name.toString() + '\n' + 
+                        'Battlegroup: ' + _infos.data.battlegroup.toString() + '\n' + 
+                        'Level: ' + _infos.data.level.toString() + '\n' + 
+                        'Pontos de conquista: ' + _infos.data.achievementPoints.toString() + '\n' +
+                        'Honarables Kills: ' + _infos.data.totalHonorableKills.toString()) + '\n';
     }
 }
 
