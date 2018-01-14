@@ -1,4 +1,5 @@
 # Blizz-Bot
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
 Bot para facilitar a busca por informações de personagens, jogos e perfis da Battle.net.
 
