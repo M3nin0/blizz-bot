@@ -7,6 +7,12 @@ Bot para facilitar a busca por informações de personagens, jogos e perfis da B
 
 A conversação tenta ser a mais simples possível, permitindo que o bot seja utilizado sem grandes configurações.
 
+## Jogos disponíveis
+
+- [X] WOW
+- [ ] SC2
+- [ ] D3
+
 ## Comandos
 
 Os comandos disponíveis para serem utilizados no bot são:
@@ -21,6 +27,8 @@ Os comandos disponíveis para serem utilizados no bot são:
     - Exemplo de utilização: !search_profile wow charni ; amanthul; us
         - A sintaxe é bastante simples, segue o padrão: <code> !search_profile JOGO NOME_PROFILE ; REALM;  </code>
     - Este comando retorna informações do perfil selecionado
+- !search_achieve
+    - Exemplo de utilização: !search_achieve wow ; 2144 ; us
 
 ## Compilação
 
