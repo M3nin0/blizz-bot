@@ -17,9 +17,10 @@ class Dialog {
 
     public static commands(): string {
         return ' \
-            Os comandos disponíveis são: \n\n \
+            Os comandos disponíveis são: \n\n\
             !search_profile JOGO NOME_DO_PERFIL ; REALM ; LOCALE \n\
-                - Jogos disponíveis: sc2 - wow - d3\
+            !search_achieve JOGO ID_DO_ACHIVEMENT ; LOCALE \n\
+                    - Jogos disponíveis: wow \n\
             !examples \
         '
     }
@@ -28,7 +29,8 @@ class Dialog {
     public static examples(): string {
         return ' \
             Vamos aos exemplos dos comandos \n \
-            !search_profile wow blizz-bot; Azralon ; pt_BR \
+            !search_profile wow blizz-bot; Azralon ; pt_BR \n \
+            !search_achieve wow ; 2144 ; us \
         '
     }
 
@@ -41,18 +43,71 @@ class Dialog {
             achievementPoints: [],
             totalHonorableKills: []
         }};
-    
-        await blizzard.wow.character(['profile'], { origin: locale, realm: realm, name: nameProfile })
-        .then(response => {
-            _infos = response;
-        });
-    
-        chat.reply(
-                        'Nome: ' + _infos.data.name.toString() + '\n' + 
-                        'Battlegroup: ' + _infos.data.battlegroup.toString() + '\n' + 
-                        'Level: ' + _infos.data.level.toString() + '\n' + 
-                        'Pontos de conquista: ' + _infos.data.achievementPoints.toString() + '\n' +
-                        'Honarables Kills: ' + _infos.data.totalHonorableKills.toString()) + '\n';
+        
+        try {
+            await blizzard.wow.character(['profile'], { origin: locale, realm: realm, name: nameProfile })
+            .then(response => {
+                _infos = response;
+            });
+        
+            chat.reply(
+                            'Nome: ' + _infos.data.name.toString() + '\n' + 
+                            'Battlegroup: ' + _infos.data.battlegroup.toString() + '\n' + 
+                            'Level: ' + _infos.data.level.toString() + '\n' + 
+                            'Pontos de conquista: ' + _infos.data.achievementPoints.toString() + '\n' +
+                            'Honarables Kills: ' + _infos.data.totalHonorableKills.toString()) + '\n';
+        } catch {
+            chat.reply('Nada foi encontrado :frowning:');
+        }
+    }
+
+    public static async searchAchieve(chat: Message, archive_id: number, region: string): Promise<any> {
+        
+        let _infos_basic = [];
+        let _depends = [];
+        let _itens: string[] = [];
+        
+        try {
+            await blizzard.wow.achievement({id: archive_id, origin: region})
+            .then(response => {
+                
+                _infos_basic.push(response.data.title);
+                _infos_basic.push(response.data.points);
+                _infos_basic.push(response.data.description);
+                _infos_basic.push(response.data.reward);
+
+                for (let data of response.data.rewardItems) {
+                    _itens.push('ID: ' + data.id + '\n' + 
+                                'Nome: ' + data.name + '\n' + 
+                                'Level do item: ' + data.itemLevel + '\n');
+                }                
+                
+                for (let data of response.data.criteria) {
+                    _depends.push(data);
+                }
+            });
+
+            chat.reply('Informações sobre o archivement  - ' + _infos_basic[0] + '\n' + 
+                       'Pontos recebidos: ' + _infos_basic[1] + '\n' +
+                       'Descrição: ' + _infos_basic[2] + '\n' + 
+                       'Recompensa: ' + _infos_basic[3].slice(8));
+            
+            chat.reply('Itens de recompensa\n');
+            for (let item of _itens) {
+                chat.reply(item);
+            }
+
+            if (_depends.length != 0) {
+                chat.reply('Necessita também, das seguintes missões');
+                for (let item of _depends) {
+                    chat.reply('ID: ' + item.id + '\n' +
+                               'Descrição: ' + item.description);
+                }
+            }
+            
+        } catch  {
+            chat.reply('Nada foi encontrado :frowning:')
+        }
     }
 }
 
