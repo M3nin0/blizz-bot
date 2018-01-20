@@ -35,7 +35,7 @@ class Dialog {
         '
     }
 
-    public static async searchProfile(chat: Message, nameProfile: string, realm: string, locale: string ): Promise<any> {
+    public static async searchProfileWoW(chat: Message, nameProfile: string, realm: string, origin: string ): Promise<any> {
     
         let _infos  = {data : {
             name: [], 
@@ -46,7 +46,7 @@ class Dialog {
         }};
         
         try {
-            await blizzard.wow.character(['profile'], { origin: locale, realm: realm, name: nameProfile })
+            await blizzard.wow.character(['profile'], { origin: origin, realm: realm, name: nameProfile })
             .then(response => {
                 _infos = response;
             });
@@ -59,6 +59,29 @@ class Dialog {
                             'Honarable Kills: ' + _infos.data.totalHonorableKills.toString()) + '\n';
         } catch {
             chat.reply('Nada foi encontrado :frowning:');
+        }
+    }
+
+    public static async searchProfileSc(chat: Message, profileID: number, nameProfile: string, origin: string ): Promise<any> {
+        
+        let _infos = [];
+
+        try {
+            await blizzard.sc2.profile('profile', {id: profileID, name: nameProfile, origin: origin})
+            .then(response => {
+                _infos.push(response.data);
+            });
+
+            chat.reply('Nome: ' + _infos[0].displayName + '\n' +
+            'Raça principal: ' + _infos[0].career.primaryRace + '\n' +
+            'Maior nível de rank obtido: ' + _infos[0].career.highestTeamRank + '\n' +
+            'Vitória com terrano: ' + _infos[0].career.terranWins + '\n' +
+            'Vitórias com protoss: ' + _infos[0].career.protossWins  + '\n' + 
+            'Vitória com zers: ' + _infos[0].career.zergWins + '\n' +
+            'Total de pontos de conquista: ' + _infos[0].achievements.points.totalPoints);
+
+        } catch {
+            chat.reply('Nada foi encontrado :interrobang:')
         }
     }
 

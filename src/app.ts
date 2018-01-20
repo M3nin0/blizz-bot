@@ -27,11 +27,18 @@ bot.on('message', message => {
                                             .split(';');
 
                 
-                Dialog.searchProfile(message,
+                Dialog.searchProfileWoW(message,
                                      args[0].trim(),
                                      args[1].trim(),
                                      args[2].trim())
                 
+            } else if (message.content.slice(15, 20).trim() == 'sc2') {
+                let args: string[] = message.content
+                                            .slice(20)
+                                            .split(';');
+
+                Dialog.searchProfileSc(message, parseInt(args[1].trim()), args[2].trim(), args[3].trim());
+
             }
         }
         else if (message.content.slice(1, 16).trim() == 'search_achieve') {
@@ -68,9 +75,7 @@ bot.on('message', message => {
                 Dialog.searchItem(message, parseInt(args[0].trim()), args[1]);
             }
         }
-
     } 
-
     if (message.content == '!examples') {
         message.reply(Dialog.examples());
     }
