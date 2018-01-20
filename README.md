@@ -13,7 +13,7 @@ A conversação tenta ser a mais simples possível, permitindo que o bot seja ut
 
 - [X] WOW
 - [X] SC2
-- [ ] D3
+- [X] D3
 
 ## Ajuda
 
