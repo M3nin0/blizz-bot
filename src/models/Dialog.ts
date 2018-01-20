@@ -122,6 +122,36 @@ class Dialog {
         }
     }
 
+    public static async searchHeros(chat: Message, profileTag: string, origin: string): Promise<any> {
+        
+        let _infos = [];
+
+        try {
+            
+            await blizzard.d3.profile({tag: profileTag, origin: origin})
+                .then(response => {
+                    _infos.push(response.data.heroes);
+                });
+
+            chat.reply('Heróis disponíveis');
+
+            let isHardcore = (hardcore) => {if (hardcore == false) {return 'Não'} else {return 'Sim'}};
+            let isSeasonal = (seasonal) => {if (seasonal == false) {return 'Não'} else {return 'Sim'}};
+
+            for (let hero of _infos[0]) {
+                chat.reply('Nome: ' + hero.name + '\n' +
+                           'Classe: ' + hero.class + '\n' + 
+                           'Level: ' + hero.level + '\n' +
+                           'Hardcore: ' + isHardcore(hero.hardcore) + '\n' +
+                           'Temporada: ' + isSeasonal(hero.seasonal));
+            }
+
+        } catch {
+            chat.reply('Nada encontrado :unicorn:');
+        }
+
+    }
+
     public static async searchAchieve(chat: Message, archiveID: number, region: string): Promise<any> {
         
         let _infos_basic = [];

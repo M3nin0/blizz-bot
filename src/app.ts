@@ -79,6 +79,21 @@ bot.on('message', message => {
                                             .split(';');
                 
                 Dialog.searchItem(message, parseInt(args[0].trim()), args[1]);
+            } else {
+                message.reply('A busca de itens está disponível apenas para World of Warcraft :boxing_glove:');
+            }
+        }
+
+        else if (message.content.slice(1, 13) == 'search_heros') {
+            if (message.content.slice(14, 16) == 'd3') {
+                
+                let args: string[] = message.content
+                                            .slice(19)
+                                            .split(';');
+
+                Dialog.searchHeros(message, args[0].trim(), args[1].trim());
+            } else {
+                message.reply('A busca por heróis está disponível apenas para o Diablo 3 :corn:');
             }
         }
     } 
