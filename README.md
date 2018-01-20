@@ -1,7 +1,7 @@
 # Blizz-Bot
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-![GitHub Logo](/art/logo.png)
+![Logo](/art/logo.PNG)
 
 CLI para facilitar a busca por informações de personagens, conquistas, jogos e perfis da Battle.net.
 

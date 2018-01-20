@@ -48,7 +48,27 @@ bot.on('message', message => {
             } else {
                 message.reply('Archivements disponíveis apenas para o World of Warcraft');
             }
-        } 
+        }
+        else if (message.content.slice(1, 12) == 'search_boss') {
+            if (message.content.slice(13, 16) == 'wow') {
+                let args: string[] = message.content
+                                            .slice(18)
+                                            .split(';');
+                
+                Dialog.searchBoss(message, parseInt(args[0].trim()), args[1]);
+            }
+        }
+
+        else if (message.content.slice(1, 12) == 'search_item') {
+            if (message.content.slice(13, 16) == 'wow') {
+                let args: string[] = message.content
+                                            .slice(19)
+                                            .split(';');
+                
+                Dialog.searchItem(message, parseInt(args[0].trim()), args[1]);
+            }
+        }
+
     } 
 
     if (message.content == '!examples') {
