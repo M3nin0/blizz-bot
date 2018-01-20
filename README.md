@@ -12,7 +12,7 @@ A conversação tenta ser a mais simples possível, permitindo que o bot seja ut
 ## Jogos disponíveis
 
 - [X] WOW
-- [ ] SC2
+- [X] SC2
 - [ ] D3
 
 ## Ajuda
