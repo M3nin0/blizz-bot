@@ -33,12 +33,12 @@ class Dialog {
     
     public static examples(): string {
         return ' \
-            Vamos aos exemplos dos comandos \n \
-            WoW: !search_profile wow blizz-bot; Azralon ; pt_BR \n \
+            Vamos aos exemplos dos comandos \n\
+            WoW: !search_profile wow blizz-bot; Azralon ; pt_BR \n\
             D3: !search_profile d3 ; skt#1884 ; us \n\
             SC2: !search_profile sc2 ; 2137104 ;  skt ; us \n\
-            !search_achieve wow ; 2144 ; us \n \
-            !search_boss wow ; 24664 ; us \n \
+            !search_achieve wow ; 2144 ; us \n\
+            !search_boss wow ; 24664 ; us \n\
             !search_heros d3 ; skt#1884 ; us\
         '
     }
