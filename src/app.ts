@@ -39,6 +39,12 @@ bot.on('message', message => {
 
                 Dialog.searchProfileSc(message, parseInt(args[1].trim()), args[2].trim(), args[3].trim());
 
+            } else if (message.content.slice(15, 19).trim() == 'd3') {
+                let args: string[] = message.content
+                                            .slice(20)
+                                            .split(';');
+
+                Dialog.searchProfileD3(message, args[0], args[1]);
             }
         }
         else if (message.content.slice(1, 16).trim() == 'search_achieve') {

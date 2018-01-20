@@ -47,7 +47,7 @@ class Dialog {
         
         try {
             await blizzard.wow.character(['profile'], { origin: origin, realm: realm, name: nameProfile })
-            .then(response => {
+                .then(response => {
                 _infos = response;
             });
         
@@ -68,7 +68,7 @@ class Dialog {
 
         try {
             await blizzard.sc2.profile('profile', {id: profileID, name: nameProfile, origin: origin})
-            .then(response => {
+                .then(response => {
                 _infos.push(response.data);
             });
 
@@ -85,6 +85,43 @@ class Dialog {
         }
     }
 
+    public static async searchProfileD3(chat: Message, profileTag: string, origin: string): Promise<any>{
+        
+        let _infos = [];
+
+        try {
+            
+            await blizzard.d3.profile({tag: profileTag, origin: origin})
+                .then(response => {
+                    _infos.push(response.data);
+                });
+
+            chat.reply('Informações do perfil\n' +
+                        'BattleTag: ' + _infos[0].battleTag + '\n' +
+                        'Level de paragon: ' + _infos[0].paragonLevel + '\n' +
+                        'Level de paragon (Hardcore): ' + _infos[0].paragonLevelHardcore + '\n' +
+                        'Level de paragon (Temporada): ' + _infos[0].paragonLevelSeason + '\n' +
+                        'Level de paragon (Hardcore + Temporada): ' + _infos[0].paragonLevelSeasonHardcore);
+            
+            chat.reply('Mortes causadas' + '\n' + 
+                        'Monstros comuns: ' + _infos[0].kills.monsters + '\n' +
+                        'Monstros elite: ' + _infos[0].kills.elites + '\n' + 
+                        'Monstros hardcore: ' + _infos[0].kills.hardcoreMonsters);
+            
+            chat.reply('Tempo de jogo (Por personagem)\n' + 
+                        'Bárbaro: ' + (parseFloat(_infos[0].timePlayed.barbarian) * 100).toFixed(2) + ' Hora (s)\n' +
+                        'Cruzado: ' + (parseFloat(_infos[0].timePlayed.crusader) * 100 ).toFixed(2) + ' Hora (s)\n' +
+                        'Caçador de demônios: ' + (parseFloat(_infos[0].timePlayed['demon-hunter']) * 100).toFixed(2) + ' Hora(s)\n' +
+                        'Monge: ' + (parseFloat(_infos[0].timePlayed.monk) * 100).toFixed(2) + ' Hora (s) \n' +
+                        'Necromancer: ' + (parseFloat(_infos[0].timePlayed.necromancer) * 100).toFixed(2) + ' Hora (s)\n' +
+                        'Witch Doctor: ' + (parseFloat(_infos[0].timePlayed['witch-doctor']) * 100).toFixed(2)  + ' Hora (s)\n' + 
+                        'Mago: ' + (parseFloat(_infos[0].timePlayed.wizard) * 100).toFixed(2) + ' Hora (s)');
+
+        } catch {
+            chat.reply('Nada foi encontrado :boom:');
+        }
+    }
+
     public static async searchAchieve(chat: Message, archiveID: number, region: string): Promise<any> {
         
         let _infos_basic = [];
@@ -93,7 +130,7 @@ class Dialog {
         
         try {
             await blizzard.wow.achievement({id: archiveID, origin: region})
-            .then(response => {
+                .then(response => {
                 
                 _infos_basic.push(response.data.title);
                 _infos_basic.push(response.data.points);
@@ -140,7 +177,7 @@ class Dialog {
         
         try {
             await blizzard.wow.boss({id: bossID, origin: region})
-            .then(response => {
+                .then(response => {
                 console.log(response.data);
                 _infos.push(response.data);
             });
@@ -161,7 +198,7 @@ class Dialog {
 
         try {
             await blizzard.wow.item({id: itemID, origin: region})
-            .then(response => {
+                .then(response => {
                 _infos.push(response.data);
             });
 
