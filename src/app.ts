@@ -101,6 +101,10 @@ bot.on('message', message => {
         message.reply(Dialog.examples());
     }
 
+    if (message.content == '!help') {
+        message.reply('Para obter mais ajuda acesse: https://github.com/M3nin0/blizz-bot/wiki');
+    }
+
 });
 
 bot.login('TOKEN_DISCORD');

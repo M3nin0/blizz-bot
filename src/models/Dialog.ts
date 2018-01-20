@@ -18,10 +18,15 @@ class Dialog {
     public static commands(): string {
         return ' \
             Os comandos disponíveis são: \n\n\
-            !search_profile JOGO NOME_DO_PERFIL ; REALM ; LOCALE \n\
+            !search_profile  \n\
+                WOW: !search_profile wow NOME_DO_PERFIL ; REALM ; LOCALE \n\
+                SC2: !search_profile sc2 ; ID_DO_JOGADOR ;  NOME_DO_JOGADOR ; LOCALE \n\
+                D3: !search_profile d3 ; Battle Tag ; Locale \n\
             !search_achieve JOGO ID_DO_ACHIVEMENT ; LOCALE \n\
             !search_boss wow ; ID_DO_BOSS ; LOCALE \n\
-            !examples \
+            !search_heros d3 ; Battle Tag ; LOCALE \n\
+            !examples \n\
+            !help \
         '
     }
 
@@ -29,9 +34,12 @@ class Dialog {
     public static examples(): string {
         return ' \
             Vamos aos exemplos dos comandos \n \
-            !search_profile wow blizz-bot; Azralon ; pt_BR \n \
+            WoW: !search_profile wow blizz-bot; Azralon ; pt_BR \n \
+            D3: !search_profile d3 ; skt#1884 ; us \n\
+            SC2: !search_profile sc2 ; 2137104 ;  skt ; us \n\
             !search_achieve wow ; 2144 ; us \n \
-            !search_boss wow ; 24664 ; us \
+            !search_boss wow ; 24664 ; us \n \
+            !search_heros d3 ; skt#1884 ; us\
         '
     }
 
