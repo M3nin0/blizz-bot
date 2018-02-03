@@ -3,7 +3,7 @@
 
 ![Logo](/art/logo.PNG)
 
-CLI para facilitar a busca por informações de personagens, conquistas, jogos e perfis da Battle.net.
+CUI para facilitar a busca por informações de personagens, conquistas, jogos e perfis da Battle.net.
 
 ## Conversação
 
