@@ -2,10 +2,6 @@
 
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-<div style="text-align:center">
-  <img src="https://github.com/M3nin0/blizzard-bot/blob/master/art/logo.PNG" />
-</div>
-
 CUI para facilitar a busca por informações de personagens, conquistas, jogos e perfis da Battle.net.
 
 ## Conversação
