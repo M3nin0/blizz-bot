@@ -1,7 +1,10 @@
-# Blizz-Bot
+# blizzard-bot
+
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-![Logo](/art/logo.PNG)
+<div style="text-align:center">
+  <img src="https://github.com/M3nin0/blizzard-bot/blob/master/art/logo.PNG" />
+</div>
 
 CUI para facilitar a busca por informações de personagens, conquistas, jogos e perfis da Battle.net.
 
@@ -11,11 +14,10 @@ A conversação tenta ser a mais simples possível, permitindo que o bot seja ut
 
 ## Jogos disponíveis
 
-- [X] WOW
-- [X] SC2
-- [X] D3
+- [X] World of Warcraft
+- [X] StarCraft 2
+- [X] Diablo 3
 
 ## Ajuda
 
 Para saber mais sobre o bot e como utilizar, acesse a [Wiki](https://github.com/M3nin0/blizz-bot/wiki)
-
